@@ -1,0 +1,37 @@
+//_Reset styles:
+@import-normalize;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+//_Import fonts:
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+:root {
+  //_Colors:
+  --natural-100: #151619;
+  --natural-200: #1d1f22;
+  --natural-300: #2b2d31;
+  --natural-400: #35393f;
+  --natural-500: #5a6069;
+  --natural-600: #7c8187;
+  --natural-700: #c1c4cb;
+  --natural-800: #e4e4e4;
+  --natural-900: #f5f5f5;
+
+  --primary-100: #e46643;
+  --primary-200: #f39765;
+
+  --white: #ffffff;
+}
+
+body[data-theme="light"] {
+}
+
+body[data-theme="dark"] {
+}
