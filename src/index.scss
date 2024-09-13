@@ -38,6 +38,9 @@
   --ff-rb: 'Roboto', sans-serif;
   --ff-rb-mono: 'Roboto Mono', monospace;
   --ff-rb-slab: 'Roboto Slab', serif;
+
+  //_Transition time
+  --tr-time: 0.3s;
 }
 
 body {
@@ -48,4 +51,18 @@ body[data-theme='light'] {
 }
 
 body[data-theme='dark'] {
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background-color: transparent;
+}
+
+.label-text {
+  color: var(--natural-600);
+  text-transform: capitalize;
+  font-size: 0.75rem;
 }

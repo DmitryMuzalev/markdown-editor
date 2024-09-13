@@ -1,44 +1,35 @@
-import { Button } from '../UI/Button/Button';
+//_Hooks:
+import { useMediaQuery } from 'react-responsive';
+
+//_Styles:
 import styles from './Header.module.scss';
 
+//_Images:
 import SaveIcon from '../../assets/icon-save.svg';
 import DeleteIcon from '../../assets/icon-delete.svg';
-import DocumentIcon from '../../assets/icon-document.svg';
 
-import { useState } from 'react';
-import clsx from 'clsx';
+//_Components:
+import { MenuButton } from './MenuButton/MenuButton';
+import { FileName } from './FileName/FileName';
+import { Button } from '../UI/Button/Button';
 import { Logo } from '../Logo/Logo';
-import { useMediaQuery } from 'react-responsive';
 
 function Header() {
   const isSmallDesktop = useMediaQuery({ query: '(max-width: 992px)' });
+
   return (
     <div className={styles.header}>
       <MenuButton />
       {!isSmallDesktop && <Logo />}
-      <FileName />
+      <FileName classes={styles.headerField} />
       <HeaderButtons />
-    </div>
-  );
-}
-
-function FileName() {
-  const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
-  return (
-    <div className={styles.fileName}>
-      <div className={styles.fileNameIcon}>
-        <img src={DocumentIcon} alt="file" />
-      </div>
-      <div className={styles.fileNameField}>
-        {!isTablet && <label htmlFor="fileName">document name</label>}
-        <input type="text" id="fileName" value={'welcome.md'} />
-      </div>
     </div>
   );
 }
 
 function HeaderButtons() {
   const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
+
   return (
     <div className={styles.headerButtons}>
       <Button>
@@ -49,31 +40,6 @@ function HeaderButtons() {
         {!isTablet && <span>save changes</span>}
       </Button>
     </div>
-  );
-}
-
-function MenuButton() {
-  const [isOpenedMenu, setIsOpenedMenu] = useState(false);
-
-  const toggleMenu = () => setIsOpenedMenu((prev) => !prev);
-
-  const menuButtonStyles = clsx(
-    styles.menuButton,
-    isOpenedMenu && styles.menuButtonOpened
-  );
-
-  return (
-    <button className={menuButtonStyles} onClick={toggleMenu}>
-      <div>
-        <span></span>
-      </div>
-      <div>
-        <span></span>
-      </div>
-      <div>
-        <span></span>
-      </div>
-    </button>
   );
 }
 

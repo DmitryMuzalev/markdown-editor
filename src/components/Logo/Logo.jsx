@@ -1,4 +1,7 @@
+//_Styles:
 import styles from './Logo.module.scss';
+
+//_Images:
 import LogoIcon from '../../assets/logo.svg';
 
 function Logo() {

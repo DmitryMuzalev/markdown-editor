@@ -1,4 +1,7 @@
+//_Utils:
 import clsx from 'clsx';
+
+//_Styles:
 import styles from './Button.module.scss';
 
 function Button({ children, cb = () => {}, type = 'default' }) {
@@ -6,6 +9,7 @@ function Button({ children, cb = () => {}, type = 'default' }) {
     styles.button,
     type === 'primary' && styles.buttonPrimary
   );
+
   return (
     <button className={buttonStyles} onClick={cb}>
       {children}
