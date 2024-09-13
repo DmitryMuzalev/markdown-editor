@@ -64,9 +64,15 @@ function MenuButton() {
 
   return (
     <button className={menuButtonStyles} onClick={toggleMenu}>
-      <span></span>
-      <span></span>
-      <span></span>
+      <div>
+        <span></span>
+      </div>
+      <div>
+        <span></span>
+      </div>
+      <div>
+        <span></span>
+      </div>
     </button>
   );
 }
