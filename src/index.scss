@@ -8,9 +8,14 @@
 }
 
 //_Import fonts:
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+/* font-family: "Roboto Mono", monospace; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+/* font-family: "Roboto Slab", serif; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+/* font-family: "Roboto", sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
 :root {
   //_Colors:
@@ -28,10 +33,19 @@
   --primary-200: #f39765;
 
   --white: #ffffff;
+
+  //_Fonts:
+  --ff-rb: 'Roboto', sans-serif;
+  --ff-rb-mono: 'Roboto Mono', monospace;
+  --ff-rb-slab: 'Roboto Slab', serif;
 }
 
-body[data-theme="light"] {
+body {
+  font-family: var(--ff-rb);
 }
 
-body[data-theme="dark"] {
+body[data-theme='light'] {
+}
+
+body[data-theme='dark'] {
 }
