@@ -21,7 +21,7 @@ function Header() {
     <div className={styles.header}>
       <MenuButton />
       {!isSmallDesktop && <Logo />}
-      <FileName classes={styles.headerField} />
+      <FileName classes={[styles.headerField]} />
       <HeaderButtons />
     </div>
   );

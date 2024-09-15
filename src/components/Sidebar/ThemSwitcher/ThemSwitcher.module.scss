@@ -1,0 +1,46 @@
+.themeSwitcher {
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+
+  i {
+    display: inline-block;
+  }
+}
+
+.switcher {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--natural-500);
+  width: 3rem;
+  height: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+
+  &Slider {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+  }
+
+  &Slider::before {
+    position: absolute;
+    content: '';
+    height: 0.75rem;
+    width: 0.75rem;
+    background-color: var(--white);
+    border-radius: 50%;
+    top: 50%;
+    left: 0;
+    transform: translate(-20%, -50%);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  &Checked &Slider::before {
+    -webkit-transform: translate(190%, -50%);
+    -ms-transform: translate(190%, -50%);
+    transform: translate(190%, -50%);
+  }
+}

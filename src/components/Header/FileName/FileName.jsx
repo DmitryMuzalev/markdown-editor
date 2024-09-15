@@ -10,10 +10,10 @@ import styles from './FileName.module.scss';
 //_Images:
 import DocumentIcon from '../../../assets/icon-document.svg';
 
-function FileName({ classes }) {
+function FileName({ classes = [] }) {
   const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
 
-  const fileNameStyles = clsx(styles.fileName, classes);
+  const fileNameStyles = clsx(styles.fileName, ...classes);
 
   return (
     <div className={fileNameStyles}>

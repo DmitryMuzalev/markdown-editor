@@ -17,6 +17,9 @@
 /* font-family: "Roboto", sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
+/* Icon font */
+@import './icon-font-styles.scss';
+
 :root {
   //_Colors:
   --natural-100: #151619;
@@ -45,6 +48,7 @@
 
 body {
   font-family: var(--ff-rb);
+  min-height: 100vh;
 }
 
 body[data-theme='light'] {
@@ -65,4 +69,11 @@ button {
   color: var(--natural-600);
   text-transform: capitalize;
   font-size: 0.75rem;
+}
+
+.section-title {
+  color: var(--natural-600);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
 }
