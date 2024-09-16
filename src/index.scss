@@ -9,16 +9,16 @@
 
 //_Import fonts:
 /* font-family: "Roboto Mono", monospace; */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 
 /* font-family: "Roboto Slab", serif; */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
 
 /* font-family: "Roboto", sans-serif; */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 /* Icon font */
-@import './icon-font-styles.scss';
+@import "./icon-font-styles.scss";
 
 :root {
   //_Colors:
@@ -38,9 +38,9 @@
   --white: #ffffff;
 
   //_Fonts:
-  --ff-rb: 'Roboto', sans-serif;
-  --ff-rb-mono: 'Roboto Mono', monospace;
-  --ff-rb-slab: 'Roboto Slab', serif;
+  --ff-rb: "Roboto", sans-serif;
+  --ff-rb-mono: "Roboto Mono", monospace;
+  --ff-rb-slab: "Roboto Slab", serif;
 
   //_Transition time
   --tr-time: 0.3s;
@@ -51,18 +51,23 @@ body {
   min-height: 100vh;
 }
 
-body[data-theme='light'] {
+body[data-theme="light"] {
 }
 
-body[data-theme='dark'] {
+body[data-theme="dark"] {
 }
 
 button {
   cursor: pointer;
+  color: inherit;
   font-family: inherit;
   font-size: inherit;
   border: none;
   background-color: transparent;
+}
+
+ul {
+  list-style: none;
 }
 
 .label-text {

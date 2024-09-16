@@ -1,0 +1,60 @@
+.documents {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.75rem;
+  min-width: 100%;
+  &Button {
+    width: 100%;
+  }
+  &List {
+    padding: 0.25rem;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.25rem;
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 0.25rem var(--natural-500);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--primary-100);
+      border-radius: 10px;
+    }
+
+    li {
+      margin-bottom: 1.25rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.document {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 0.25rem;
+  column-gap: 1rem;
+  transition: color var(--tr-time);
+
+  &Active {
+    color: var(--primary-100);
+  }
+
+  &Icon {
+  }
+
+  &Info {
+    text-align: left;
+    flex-grow: 1;
+
+    span {
+      display: inline-block;
+      margin-bottom: 0.125rem;
+    }
+  }
+}

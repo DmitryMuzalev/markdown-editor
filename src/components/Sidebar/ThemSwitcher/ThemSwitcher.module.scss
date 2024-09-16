@@ -2,10 +2,6 @@
   display: flex;
   align-items: center;
   column-gap: 0.75rem;
-
-  i {
-    display: inline-block;
-  }
 }
 
 .switcher {
@@ -26,7 +22,7 @@
 
   &Slider::before {
     position: absolute;
-    content: '';
+    content: "";
     height: 0.75rem;
     width: 0.75rem;
     background-color: var(--white);
