@@ -15,9 +15,8 @@
   border-radius: 1rem;
 
   &Slider {
-    display: inline-block;
-    width: 100%;
     position: relative;
+    width: 100%;
   }
 
   &Slider::before {

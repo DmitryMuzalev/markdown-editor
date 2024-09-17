@@ -1,7 +1,11 @@
-import styles from "./ThemSwitcher.module.scss";
+//_Utils:
+import clsx from "clsx";
+
+//_Hooks:
 import { useState, useEffect } from "react";
 
-import clsx from "clsx";
+//_Styles:
+import styles from "./ThemSwitcher.module.scss";
 
 function ThemSwitcher() {
   const [theme, setTheme] = useState("light");

@@ -1,21 +1,21 @@
 //_Hooks:
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 //_Styles:
-import styles from './Header.module.scss';
+import styles from "./Header.module.scss";
 
 //_Images:
-import SaveIcon from '../../assets/icon-save.svg';
-import DeleteIcon from '../../assets/icon-delete.svg';
+import SaveIcon from "../../assets/icon-save.svg";
+import DeleteIcon from "../../assets/icon-delete.svg";
 
 //_Components:
-import { MenuButton } from './MenuButton/MenuButton';
-import { FileName } from './FileName/FileName';
-import { Button } from '../UI/Button/Button';
-import { Logo } from '../Logo/Logo';
+import { MenuButton } from "./MenuButton/MenuButton";
+import { FileName } from "./FileName/FileName";
+import { Button } from "../UI/Button/Button";
+import { Logo } from "../Logo/Logo";
 
 function Header() {
-  const isSmallDesktop = useMediaQuery({ query: '(max-width: 992px)' });
+  const isSmallDesktop = useMediaQuery({ query: "(max-width: 992px)" });
 
   return (
     <div className={styles.header}>
@@ -28,7 +28,7 @@ function Header() {
 }
 
 function HeaderButtons() {
-  const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
+  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <div className={styles.headerButtons}>

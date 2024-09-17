@@ -1,13 +1,13 @@
 //_Utils:
-import clsx from 'clsx';
+import clsx from "clsx";
 
 //_Styles:
-import styles from './Button.module.scss';
+import styles from "./Button.module.scss";
 
-function Button({ children, cb = () => {}, type = 'default', classes = [] }) {
+function Button({ children, cb = () => {}, type = "default", classes = [] }) {
   const buttonStyles = clsx(
     styles.button,
-    type === 'primary' && styles.buttonPrimary,
+    type === "primary" && styles.buttonPrimary,
     ...classes
   );
 

@@ -1,23 +1,23 @@
 //_Utils:
-import clsx from 'clsx';
+import clsx from "clsx";
 
 //_Hooks:
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 //_Styles:
-import styles from './FileName.module.scss';
+import styles from "./FileName.module.scss";
 
 //_Images:
-import DocumentIcon from '../../../assets/icon-document.svg';
+import DocumentIcon from "../../../assets/icon-document.svg";
 
 function FileName({ classes = [] }) {
-  const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
+  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
 
   const fileNameStyles = clsx(styles.fileName, ...classes);
 
   return (
     <div className={fileNameStyles}>
-      <div className={styles.fileNameIcon}>
+      <div className="icon">
         <img src={DocumentIcon} alt="file" />
       </div>
       <div className={styles.fileNameField}>
@@ -26,7 +26,7 @@ function FileName({ classes = [] }) {
             document name
           </label>
         )}
-        <input type="text" id="fileName" value={'welcome.md'} />
+        <input type="text" id="fileName" value={"welcome.md"} />
       </div>
     </div>
   );
