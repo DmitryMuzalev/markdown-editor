@@ -1,4 +1,9 @@
 .markdown {
-  flex-basis: 50%;
+  flex-basis: minmax(50% auto);
   background-color: red;
+  overflow: auto;
+
+  @media (max-width: 768px) {
+    flex-basis: auto;
+  }
 }
