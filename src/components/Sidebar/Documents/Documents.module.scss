@@ -6,21 +6,6 @@
 
   &List {
     padding: 0.25rem;
-    overflow: auto;
-
-    &::-webkit-scrollbar {
-      width: 0.25rem;
-    }
-
-    &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 0.25rem var(--natural-500);
-      border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--primary-100);
-      border-radius: 10px;
-    }
 
     li {
       margin-bottom: 1.25rem;

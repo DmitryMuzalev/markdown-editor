@@ -26,7 +26,7 @@ function Documents({ classes = [] }) {
       <Button type="primary">
         <span>+ New Document</span>
       </Button>
-      <ul className={styles.documentsList}>
+      <ul className={styles.documentsList + " " + "custom-scroll"}>
         {documents.map((doc) => {
           return (
             <DocumentItem
