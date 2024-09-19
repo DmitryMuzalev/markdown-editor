@@ -1,15 +1,20 @@
-import { useState } from "react";
-import styles from "./Editor.module.scss";
-import { Markdown } from "./Markdown/Markdown";
-import { Preview } from "./Preview/Preview";
-import { useMediaQuery } from "react-responsive";
+//_Hooks:
+import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+
+//_Styles:
+import styles from './Editor.module.scss';
+
+//_Components:
+import { Markdown } from './Markdown/Markdown';
+import { Preview } from './Preview/Preview';
 
 function Editor() {
   const [isShowPreview, changeIsShowPreview] = useState(false);
 
   const toggleIsShow = () => changeIsShowPreview((prev) => !prev);
 
-  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
+  const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
 
   return (
     <div className={styles.editor}>
@@ -21,13 +26,5 @@ function Editor() {
     </div>
   );
 }
-
-/* function PreviewSwitcher() {
-  return (
-    <button>
-      <img src={HidePreviewIcon} alt="delete file" />
-    </button>
-  );
-} */
 
 export { Editor };
