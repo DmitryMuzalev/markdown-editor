@@ -1,24 +1,17 @@
 //_Utils:
 import clsx from 'clsx';
 
-//_Hooks:
-import { useState } from 'react';
-
 //_Styles:
 import styles from './MenuButton.module.scss';
 
-function MenuButton() {
-  const [isOpenedMenu, setIsOpenedMenu] = useState(false);
-
-  const toggleMenu = () => setIsOpenedMenu((prev) => !prev);
-
+function MenuButton({ toggle, isOpenedSidebar }) {
   const menuButtonStyles = clsx(
     styles.menuButton,
-    isOpenedMenu && styles.menuButtonOpened
+    isOpenedSidebar && styles.menuButtonActive
   );
 
   return (
-    <button className={menuButtonStyles} onClick={toggleMenu}>
+    <button className={menuButtonStyles} onClick={toggle}>
       <div>
         <span></span>
       </div>

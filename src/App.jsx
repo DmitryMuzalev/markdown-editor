@@ -1,14 +1,27 @@
-import { Editor } from "./components/Editor/Editor";
-import { Header } from "./components/Header/Header";
+//_Utils:
+import { clsx } from 'clsx';
 
-//import { Sidebar } from "./components/Sidebar/Sidebar";
+//_Hooks:
+import { useState } from 'react';
+
+//_Components:
+import { Editor } from './components/Editor/Editor';
+import { Header } from './components/Header/Header';
+import { Sidebar } from './components/Sidebar/Sidebar';
 
 function App() {
+  const [isOpenedSidebar, setIsOpenedSidebar] = useState(false);
+  const toggleMenu = () => setIsOpenedSidebar((prev) => !prev);
+
+  const appStyles = clsx('app', isOpenedSidebar && 'open-sidebar');
+
   return (
-    <div className="app">
-      <Header />
-      <Editor />
-      {/*  <Sidebar /> */}
+    <div className={appStyles}>
+      <Sidebar isOpenedSidebar={isOpenedSidebar} />
+      <div className="content">
+        <Header toggle={toggleMenu} isOpenedSidebar={isOpenedSidebar} />
+        <Editor />
+      </div>
     </div>
   );
 }

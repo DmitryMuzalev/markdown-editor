@@ -1,4 +1,5 @@
 .sidebar {
+  position: fixed;
   width: 15.625rem;
   height: 100vh;
   display: flex;
@@ -8,9 +9,26 @@
   padding: 1.75rem 1.5rem;
   color: var(--white);
   background-color: var(--natural-200);
+  transition: all var(--tr-time);
+  animation: animateleft var(--tr-time);
+
+  &Closed {
+    display: none;
+  }
 
   &Documents {
     max-height: calc(100vh - 12.8rem);
     flex-grow: 1;
+  }
+}
+
+@keyframes animateleft {
+  0% {
+    left: -15.625rem;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
   }
 }

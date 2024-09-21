@@ -79,6 +79,20 @@ ul {
   list-style: none;
 }
 
+.app {
+  overflow: hidden;
+  background-color: var(--natural-200);
+}
+
+.content {
+  transform: translateX(0);
+  transition: transform var(--tr-time);
+}
+
+.app.open-sidebar .content {
+  transform: translateX(15.625rem);
+}
+
 .label-text {
   color: var(--natural-600);
   text-transform: capitalize;

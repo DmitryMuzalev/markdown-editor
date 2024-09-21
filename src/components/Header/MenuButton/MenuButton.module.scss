@@ -21,7 +21,7 @@
     background-color: var(--white);
   }
 
-  &Opened {
+  &Active {
     div:first-child {
       transform: translate(0, 100%) rotate(45deg);
     }
