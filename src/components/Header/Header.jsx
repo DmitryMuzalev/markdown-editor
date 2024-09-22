@@ -9,17 +9,17 @@ import SaveIcon from '../../assets/icon-save.svg';
 import DeleteIcon from '../../assets/icon-delete.svg';
 
 //_Components:
-import { MenuButton } from './MenuButton/MenuButton';
 import { FileName } from './FileName/FileName';
 import { Button } from '../UI/Button/Button';
 import { Logo } from '../Logo/Logo';
+import { SidebarSwitcher } from '../../features/SidebarSwitcher/SidebarSwitcher';
 
-function Header({ toggle, isOpenedSidebar }) {
+function Header() {
   const isSmallDesktop = useMediaQuery({ query: '(max-width: 992px)' });
 
   return (
     <div className={styles.header}>
-      <MenuButton toggle={toggle} isOpenedSidebar={isOpenedSidebar} />
+      <SidebarSwitcher />
       {!isSmallDesktop && <Logo />}
       <FileName classes={[styles.headerField]} />
       <HeaderButtons />

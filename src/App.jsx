@@ -2,24 +2,34 @@
 import { clsx } from 'clsx';
 
 //_Hooks:
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+//_Data:
+import documents from './assets/data.json';
 
 //_Components:
 import { Editor } from './components/Editor/Editor';
 import { Header } from './components/Header/Header';
 import { Sidebar } from './components/Sidebar/Sidebar';
+import { useEffect } from 'react';
+
+//_Actions:
+import { loadDocuments } from './features/Documents/documents-slice';
 
 function App() {
-  const [isOpenedSidebar, setIsOpenedSidebar] = useState(false);
-  const toggleMenu = () => setIsOpenedSidebar((prev) => !prev);
+  const dispatch = useDispatch();
+  const showSidebar = useSelector((state) => state.showSidebar);
+  const appStyles = clsx('app', showSidebar && 'open-sidebar');
 
-  const appStyles = clsx('app', isOpenedSidebar && 'open-sidebar');
+  useEffect(() => {
+    dispatch(loadDocuments(documents));
+  }, [dispatch]);
 
   return (
     <div className={appStyles}>
-      <Sidebar isOpenedSidebar={isOpenedSidebar} />
+      <Sidebar />
       <div className="content">
-        <Header toggle={toggleMenu} isOpenedSidebar={isOpenedSidebar} />
+        <Header />
         <Editor />
       </div>
     </div>

@@ -6,7 +6,7 @@ import Markdown from 'react-markdown';
 import styles from './Preview.module.scss';
 
 //_Components:
-import { PreviewSwitcher } from '../PreviewSwitcher/PreviewSwitcher';
+import { PreviewSwitcher } from '../../../features/PreviewSwitcher/PreviewSwitcher';
 
 const document = {
   id: 'initDocsId1',
@@ -24,12 +24,12 @@ const previewBodyStyles = clsx(
   'custom-scroll'
 );
 
-function Preview({ isShow, cb }) {
+function Preview() {
   return (
     <div className={previewStyles}>
       <div className={previewHeaderStyles}>
         <span className="section-title">preview</span>
-        <PreviewSwitcher cb={cb} isShow={isShow} />
+        <PreviewSwitcher />
       </div>
       <div className={previewBodyStyles}>
         <Markdown>{document.content}</Markdown>

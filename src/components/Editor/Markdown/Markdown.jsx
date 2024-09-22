@@ -8,9 +8,9 @@ import { useMediaQuery } from 'react-responsive';
 import styles from './Markdown.module.scss';
 
 //_Components:
-import { PreviewSwitcher } from '../PreviewSwitcher/PreviewSwitcher';
+import { PreviewSwitcher } from '../../../features/PreviewSwitcher/PreviewSwitcher';
 
-function Markdown({ isShow, cb }) {
+function Markdown() {
   const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
 
   const markdownStyles = clsx(styles.markdown, 'editor-window');
@@ -28,7 +28,7 @@ function Markdown({ isShow, cb }) {
     <div className={markdownStyles}>
       <div className={markdownHeaderStyles}>
         <span className="section-title ">markdown</span>
-        {isTablet && <PreviewSwitcher cb={cb} isShow={isShow} />}
+        {isTablet && <PreviewSwitcher />}
       </div>
       <textarea
         className={markdownBodyStyles}

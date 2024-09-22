@@ -1,6 +1,6 @@
 //_Hooks:
-import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useSelector } from 'react-redux';
 
 //_Styles:
 import styles from './Editor.module.scss';
@@ -10,19 +10,14 @@ import { Markdown } from './Markdown/Markdown';
 import { Preview } from './Preview/Preview';
 
 function Editor() {
-  const [isShowPreview, changeIsShowPreview] = useState(false);
-
-  const toggleIsShow = () => changeIsShowPreview((prev) => !prev);
-
+  const showPreview = useSelector((state) => state.showPreview);
   const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
 
   return (
     <div className={styles.editor}>
-      {!isShowPreview && <Markdown isShow={isShowPreview} cb={toggleIsShow} />}
-      {!isTablet && <Preview isShow={isShowPreview} cb={toggleIsShow} />}
-      {isTablet && isShowPreview && (
-        <Preview isShow={isShowPreview} cb={toggleIsShow} />
-      )}
+      {!showPreview && <Markdown />}
+      {!isTablet && <Preview />}
+      {isTablet && showPreview && <Preview />}
     </div>
   );
 }

@@ -1,18 +1,23 @@
 //_Utils:
 import clsx from 'clsx';
 
+//_Hooks:
+import { useSelector } from 'react-redux';
+
 //_Styles:
 import styles from './Sidebar.module.scss';
 
 //_Components:
 import { Logo } from '../Logo/Logo';
-import { Documents } from './Documents/Documents';
-import { ThemSwitcher } from './ThemSwitcher/ThemSwitcher';
+import { ThemSwitcher } from '../../features/ThemSwitcher/ThemSwitcher';
+import { Documents } from '../../features/Documents/Documents';
 
-function Sidebar({ isOpenedSidebar }) {
+function Sidebar() {
+  const showSidebar = useSelector((state) => state.showSidebar);
+
   const sidebarStyles = clsx(
     styles.sidebar,
-    !isOpenedSidebar && styles.sidebarClosed
+    !showSidebar && styles.sidebarClosed
   );
 
   return (

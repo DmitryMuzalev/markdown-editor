@@ -1,11 +1,11 @@
 //_Utils:
-import clsx from "clsx";
+import clsx from 'clsx';
 
 //_Styles:
-import styles from "./DocumentItem.module.scss";
+import styles from './DocumentItem.module.scss';
 
 //_Images:
-import DocumentIcon from "../../../../assets/icon-document.svg";
+import DocumentIcon from '../../../assets/icon-document.svg';
 
 function DocumentItem({ name, date, cb, isActive }) {
   const documentStyles = clsx(
