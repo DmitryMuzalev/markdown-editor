@@ -1,21 +1,26 @@
 //_Hooks:
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 //_Styles:
-import styles from './Header.module.scss';
+import styles from "./Header.module.scss";
 
 //_Images:
-import SaveIcon from '../../assets/icon-save.svg';
-import DeleteIcon from '../../assets/icon-delete.svg';
+import SaveIcon from "../../assets/icon-save.svg";
+import DeleteIcon from "../../assets/icon-delete.svg";
 
 //_Components:
-import { FileName } from './FileName/FileName';
-import { Button } from '../UI/Button/Button';
-import { Logo } from '../Logo/Logo';
-import { SidebarSwitcher } from '../../features/SidebarSwitcher/SidebarSwitcher';
+import { FileName } from "./FileName/FileName";
+import { Button } from "../UI/Button/Button";
+import { Logo } from "../Logo/Logo";
+import { SidebarSwitcher } from "../../features/SidebarSwitcher/SidebarSwitcher";
+import { useDispatch } from "react-redux";
+import {
+  deleteDocument,
+  saveDocument,
+} from "../../features/Documents/documents-slice";
 
 function Header() {
-  const isSmallDesktop = useMediaQuery({ query: '(max-width: 992px)' });
+  const isSmallDesktop = useMediaQuery({ query: "(max-width: 992px)" });
 
   return (
     <div className={styles.header}>
@@ -28,14 +33,15 @@ function Header() {
 }
 
 function HeaderButtons() {
-  const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
+  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.headerButtons}>
-      <Button>
+      <Button cb={() => dispatch(deleteDocument())}>
         <img src={DeleteIcon} alt="delete file" />
       </Button>
-      <Button type="primary">
+      <Button type="primary" cb={() => dispatch(saveDocument())}>
         <img src={SaveIcon} alt="save changes" />
         {!isTablet && <span>save changes</span>}
       </Button>
