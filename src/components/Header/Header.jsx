@@ -14,10 +14,9 @@ import { Button } from "../UI/Button/Button";
 import { Logo } from "../Logo/Logo";
 import { SidebarSwitcher } from "../../features/SidebarSwitcher/SidebarSwitcher";
 import { useDispatch } from "react-redux";
-import {
-  deleteDocument,
-  saveDocument,
-} from "../../features/Documents/documents-slice";
+import { saveDocument } from "../../features/Documents/documents-slice";
+import toast from "react-hot-toast";
+import { toggleShowDeleteMenu } from "../../features/DeleteMenu/delite-menu-slice";
 
 function Header() {
   const isSmallDesktop = useMediaQuery({ query: "(max-width: 992px)" });
@@ -38,10 +37,16 @@ function HeaderButtons() {
 
   return (
     <div className={styles.headerButtons}>
-      <Button cb={() => dispatch(deleteDocument())}>
+      <Button cb={() => dispatch(toggleShowDeleteMenu())}>
         <img src={DeleteIcon} alt="delete file" />
       </Button>
-      <Button type="primary" cb={() => dispatch(saveDocument())}>
+      <Button
+        type="primary"
+        cb={() => {
+          dispatch(saveDocument());
+          toast.success("Document saved");
+        }}
+      >
         <img src={SaveIcon} alt="save changes" />
         {!isTablet && <span>save changes</span>}
       </Button>

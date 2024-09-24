@@ -13,6 +13,7 @@ import { DocumentItem } from "./DocumentItem/DocumentItem";
 
 //Actions:
 import { createDocument, selectDocument } from "./documents-slice";
+import toast from "react-hot-toast";
 
 function Documents({ classes = [] }) {
   const documentsStyles = clsx(styles.documents, ...classes);
@@ -23,7 +24,13 @@ function Documents({ classes = [] }) {
 
   return (
     <div className={documentsStyles}>
-      <Button type="primary" cb={() => dispatch(createDocument())}>
+      <Button
+        type="primary"
+        cb={() => {
+          dispatch(createDocument());
+          toast.success("New document created");
+        }}
+      >
         <span>+ New Document</span>
       </Button>
       <ul className={styles.documentsList + " " + "custom-scroll"}>
