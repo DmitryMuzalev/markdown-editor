@@ -7,7 +7,14 @@ import toast from "react-hot-toast";
 
 function DeleteMenu() {
   const dispatch = useDispatch();
-  const { currentDocument } = useSelector((state) => state.documents);
+
+  const { currentDocument, documentsList } = useSelector(
+    (state) => state.documents
+  );
+
+  const currentDocumentName = documentsList.find(
+    (doc) => doc.id === currentDocument?.id
+  )?.name;
 
   const handlerDeleteButton = () => {
     dispatch(deleteDocument());
@@ -19,7 +26,7 @@ function DeleteMenu() {
     <ModalWindow>
       <h4>Delete this document?</h4>
       <p>
-        {`Are you sure you want to delete the ‘${currentDocument?.name}’ document and its
+        {`Are you sure you want to delete the ‘${currentDocumentName}’ document and its
         contents? This action cannot be reversed.`}
       </p>
       <Button type="primary" cb={handlerDeleteButton}>

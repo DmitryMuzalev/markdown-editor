@@ -37,6 +37,7 @@ function FileName({ classes = [] }) {
           </label>
         )}
         <input
+          autoComplete="off"
           type="text"
           id="fileName"
           value={currentDocument?.name}

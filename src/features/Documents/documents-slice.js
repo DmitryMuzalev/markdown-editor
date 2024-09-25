@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { v4 as uuidv4 } from "uuid";
+import { getUniqueName } from "../../helpers/getUniqueName";
 
 const initialState = {
   documentsList: [],
@@ -20,7 +21,7 @@ const documentsSlice = createSlice({
     createDocument(state) {
       const newDocument = {
         id: uuidv4(),
-        name: "Document.md",
+        name: getUniqueName(state.documentsList, "Document.md"),
         content: "",
         createdAt: new Date().toLocaleDateString("en-GB"),
       };
@@ -40,7 +41,6 @@ const documentsSlice = createSlice({
     },
     saveDocument(state) {
       const { id, name, content } = state.currentDocument;
-
       state.documentsList.map((doc) => {
         if (doc.id === id) {
           doc.name = name;

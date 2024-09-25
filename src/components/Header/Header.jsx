@@ -13,7 +13,7 @@ import { FileName } from "./FileName/FileName";
 import { Button } from "../UI/Button/Button";
 import { Logo } from "../Logo/Logo";
 import { SidebarSwitcher } from "../../features/SidebarSwitcher/SidebarSwitcher";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveDocument } from "../../features/Documents/documents-slice";
 import toast from "react-hot-toast";
 import { toggleShowDeleteMenu } from "../../features/DeleteMenu/delite-menu-slice";
@@ -33,6 +33,7 @@ function Header() {
 
 function HeaderButtons() {
   const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
+  const { currentDocument } = useSelector((state) => state.documents);
   const dispatch = useDispatch();
 
   return (
@@ -43,8 +44,17 @@ function HeaderButtons() {
       <Button
         type="primary"
         cb={() => {
-          dispatch(saveDocument());
-          toast.success("Document saved");
+          const name = currentDocument?.name.trim();
+
+          if (name.length) {
+            dispatch(saveDocument());
+            toast.success("Document saved");
+          } else {
+            toast.error(
+              "Document name cannot be an empty string. Document not saved."
+            );
+            document.getElementById("fileName").focus();
+          }
         }}
       >
         <img src={SaveIcon} alt="save changes" />
