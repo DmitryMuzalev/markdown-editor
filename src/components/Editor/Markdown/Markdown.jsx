@@ -1,37 +1,46 @@
 //_Utils:
-import clsx from "clsx";
+import clsx from 'clsx';
 
 //_Hooks:
-import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from 'react-responsive';
 
 //_Styles:
-import styles from "./Markdown.module.scss";
+import styles from './Markdown.module.scss';
 
 //_Components:
-import { PreviewSwitcher } from "../../../features/PreviewSwitcher/PreviewSwitcher";
-import { useDispatch, useSelector } from "react-redux";
-import { updateContentDocument } from "../../../features/Documents/documents-slice";
+import { PreviewSwitcher } from '../../../features/PreviewSwitcher/PreviewSwitcher';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateContentDocument } from '../../../features/Documents/documents-slice';
+import { useEffect } from 'react';
 
 function Markdown() {
-  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
+  const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
 
-  const markdownStyles = clsx(styles.markdown, "editor-window");
+  const markdownStyles = clsx(styles.markdown, 'editor-window');
   const markdownHeaderStyles = clsx(
     styles.markdownHeader,
-    "editor-window-header"
+    'editor-window-header'
   );
   const markdownBodyStyles = clsx(
     styles.markdownBody,
-    "editor-window-body",
-    "custom-scroll"
+    'editor-window-body',
+    'custom-scroll'
   );
 
   const dispatch = useDispatch();
   const { currentDocument } = useSelector((state) => state.documents);
+  const showSidebar = useSelector((state) => state.showSidebar);
 
   const handlerTextarea = (e) => {
     dispatch(updateContentDocument(e.target.value));
   };
+
+  useEffect(() => {
+    if (!showSidebar) {
+      document.getElementById('markdown').focus();
+    }
+  }, [showSidebar]);
+
   return (
     <div className={markdownStyles}>
       <div className={markdownHeaderStyles}>
@@ -39,6 +48,7 @@ function Markdown() {
         {isTablet && <PreviewSwitcher />}
       </div>
       <textarea
+        id="markdown"
         className={markdownBodyStyles}
         value={currentDocument?.content}
         onChange={handlerTextarea}
