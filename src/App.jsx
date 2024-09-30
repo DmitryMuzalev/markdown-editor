@@ -17,11 +17,13 @@ import { useEffect } from "react";
 import { loadDocuments } from "./features/Documents/documents-slice";
 import { Toaster } from "react-hot-toast";
 import { DeleteMenu } from "./features/DeleteMenu/DeleteMenu";
+import { EmptyList } from "./components/EmptyList/EmptyList";
 
 function App() {
   const dispatch = useDispatch();
   const showSidebar = useSelector((state) => state.showSidebar);
   const showDeleteMenu = useSelector((state) => state.showDeleteMenu);
+  const { documentsList } = useSelector((state) => state.documents);
   const appStyles = clsx("app", showSidebar && "open-sidebar");
 
   useEffect(() => {
@@ -33,12 +35,12 @@ function App() {
       <Sidebar />
       <div className="content">
         <Header />
-        <Editor />
+        {documentsList.length ? <Editor /> : <EmptyList />}
       </div>
       <Toaster
         toastOptions={{
           position: "top-center",
-          duration: 1500,
+          duration: 2000,
         }}
       />
       {!!showDeleteMenu && <DeleteMenu />}

@@ -1,25 +1,25 @@
 //_Hooks:
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 //_Styles:
-import styles from './Header.module.scss';
+import styles from "./Header.module.scss";
 
 //_Images:
-import SaveIcon from '../../assets/icon-save.svg';
-import DeleteIcon from '../../assets/icon-delete.svg';
+import SaveIcon from "../../assets/icon-save.svg";
+import DeleteIcon from "../../assets/icon-delete.svg";
 
 //_Components:
-import { FileName } from './FileName/FileName';
-import { Button } from '../UI/Button/Button';
-import { Logo } from '../Logo/Logo';
-import { SidebarSwitcher } from '../../features/SidebarSwitcher/SidebarSwitcher';
-import { useDispatch, useSelector } from 'react-redux';
-import { saveDocument } from '../../features/Documents/documents-slice';
-import toast from 'react-hot-toast';
-import { toggleShowDeleteMenu } from '../../features/DeleteMenu/delite-menu-slice';
+import { FileName } from "./FileName/FileName";
+import { Button } from "../UI/Button/Button";
+import { Logo } from "../Logo/Logo";
+import { SidebarSwitcher } from "../../features/SidebarSwitcher/SidebarSwitcher";
+import { useDispatch, useSelector } from "react-redux";
+import { saveDocument } from "../../features/Documents/documents-slice";
+import toast from "react-hot-toast";
+import { toggleShowDeleteMenu } from "../../features/DeleteMenu/delite-menu-slice";
 
 function Header() {
-  const isSmallDesktop = useMediaQuery({ query: '(max-width: 992px)' });
+  const isSmallDesktop = useMediaQuery({ query: "(max-width: 992px)" });
 
   return (
     <div className={styles.header}>
@@ -32,7 +32,7 @@ function Header() {
 }
 
 function HeaderButtons() {
-  const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
+  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
   const { currentDocument, documentsList } = useSelector(
     (state) => state.documents
   );
@@ -53,16 +53,18 @@ function HeaderButtons() {
               (doc) => doc.name === currentDocument?.name
             );
             if (document && document.id !== currentDocument?.id) {
-              toast.error('Need rename document');
+              toast.error(
+                `${name} already exists. \n Please change the document name.`
+              );
             } else {
               dispatch(saveDocument());
-              toast.error('Document saved');
+              toast.success("Document saved");
             }
           } else {
             toast.error(
-              'Document name cannot be an empty string. Document not saved.'
+              "Document name cannot be an empty string. Document not saved."
             );
-            document.getElementById('fileName').focus();
+            document.getElementById("fileName").focus();
           }
         }}
       >

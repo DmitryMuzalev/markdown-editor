@@ -1,4 +1,3 @@
-import { Button } from "../../components/UI/Button/Button";
 import { ModalWindow } from "../../components/UI/ModalWindow/ModalWindow";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteDocument } from "../Documents/documents-slice";
@@ -16,22 +15,21 @@ function DeleteMenu() {
     (doc) => doc.id === currentDocument?.id
   )?.name;
 
-  const handlerDeleteButton = () => {
+  const closeDeleteMenu = () => dispatch(toggleShowDeleteMenu());
+
+  const confirmDeleteDocument = () => {
     dispatch(deleteDocument());
-    dispatch(toggleShowDeleteMenu());
+    closeDeleteMenu();
     toast.success("Document deleted");
   };
 
   return (
-    <ModalWindow>
+    <ModalWindow onClose={closeDeleteMenu} onConfirm={confirmDeleteDocument}>
       <h4>Delete this document?</h4>
       <p>
         {`Are you sure you want to delete the ‘${currentDocumentName}’ document and its
         contents? This action cannot be reversed.`}
       </p>
-      <Button type="primary" cb={handlerDeleteButton}>
-        confirm & delete
-      </Button>
     </ModalWindow>
   );
 }

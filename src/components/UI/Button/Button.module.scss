@@ -8,14 +8,25 @@
   border-radius: 0.375rem;
   transition: all var(--tr-time);
 
-  &Primary {
+  &Primary,
+  &Secondary {
+    width: 100%;
     padding: 0 0.75rem;
-    background-color: var(--primary-100);
-    color: var(--white);
     text-transform: capitalize;
+    color: var(--white);
+  }
 
+  &Primary {
+    background-color: var(--primary-100);
     &:hover {
       background-color: var(--primary-200);
+    }
+  }
+
+  &Secondary {
+    background-color: var(--natural-400);
+    &:hover {
+      background-color: var(--natural-500);
     }
   }
 }

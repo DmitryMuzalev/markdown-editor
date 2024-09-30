@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const useClickOutside = (ref, cb, isOpenModalWindow) => {
+export const useClickOutside = (ref, isOpenModalWindow, cb) => {
   const handlerClick = (e) => {
     e.stopPropagation();
     if (ref.current && !ref.current.contains(e.target) && isOpenModalWindow) {
@@ -8,12 +8,8 @@ export const useClickOutside = (ref, cb, isOpenModalWindow) => {
     }
   };
 
-  const pressEscape = (e) => {
-    if (e.keyCode === 27) handlerClick();
-  };
-
   useEffect(() => {
-    document.addEventListener("keypress", pressEscape);
-    return () => document.removeEventListener("keypress", pressEscape);
+    document.addEventListener("click", handlerClick);
+    return () => document.removeEventListener("click", handlerClick);
   });
 };

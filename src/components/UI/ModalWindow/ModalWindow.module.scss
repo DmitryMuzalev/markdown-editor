@@ -48,9 +48,9 @@
     }
   }
 
-  @media (max-width: 540px) {
-    &Content {
-      padding: 2.5rem 2rem;
-    }
+  &Buttons {
+    width: 100%;
+    display: flex;
+    column-gap: 0.5rem;
   }
 }

@@ -8,12 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./Documents.module.scss";
 
 //_Components:
-import { Button } from "../../components/UI/Button/Button";
 import { DocumentItem } from "./DocumentItem/DocumentItem";
 
 //Actions:
-import { createDocument, selectDocument } from "./documents-slice";
-import toast from "react-hot-toast";
+import { selectDocument } from "./documents-slice";
+import { CreateDocumentButton } from "../../components/CreateDocumentButton/CreateDocumentButton";
 
 function Documents({ classes = [] }) {
   const documentsStyles = clsx(styles.documents, ...classes);
@@ -24,15 +23,7 @@ function Documents({ classes = [] }) {
 
   return (
     <div className={documentsStyles}>
-      <Button
-        type="primary"
-        cb={() => {
-          dispatch(createDocument());
-          toast.success("New document created");
-        }}
-      >
-        <span>+ New Document</span>
-      </Button>
+      <CreateDocumentButton />
       <ul className={styles.documentsList + " " + "custom-scroll"}>
         {documentsList.map((doc) => {
           return (

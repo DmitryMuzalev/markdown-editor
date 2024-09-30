@@ -8,6 +8,7 @@ function Button({ children, cb = () => {}, type = "default", classes = [] }) {
   const buttonStyles = clsx(
     styles.button,
     type === "primary" && styles.buttonPrimary,
+    type === "secondary" && styles.buttonSecondary,
     ...classes
   );
 
