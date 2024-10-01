@@ -1,10 +1,6 @@
 .editor {
   display: flex;
+  height: 100%;
   column-gap: 0.063rem;
   background-color: var(--natural-300);
-  height: calc(100vh - 4.5rem);
-
-  @media (max-width: 768px) {
-    height: calc(100vh - 3.75rem);
-  }
 }

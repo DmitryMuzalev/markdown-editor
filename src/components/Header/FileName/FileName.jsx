@@ -18,7 +18,9 @@ function FileName({ classes = [] }) {
   const fileNameStyles = clsx(styles.fileName, ...classes);
 
   const dispatch = useDispatch();
-  const { currentDocument } = useSelector((state) => state.documents);
+  const { currentDocument, documentsList } = useSelector(
+    (state) => state.documents
+  );
 
   const handlerInput = (e) => {
     const inputValue = e.target.value;
@@ -40,8 +42,9 @@ function FileName({ classes = [] }) {
           autoComplete="off"
           type="text"
           id="fileName"
-          value={currentDocument?.name}
+          value={currentDocument?.name || ""}
           onChange={handlerInput}
+          disabled={!documentsList.length}
         />
       </div>
     </div>

@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-import { v4 as uuidv4 } from 'uuid';
-import { getUniqueName } from '../../helpers/getUniqueName';
+import { v4 as uuidv4 } from "uuid";
+import { getUniqueName } from "../../helpers/getUniqueName";
 
 const initialState = {
   documentsList: [],
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const documentsSlice = createSlice({
-  name: 'documents',
+  name: "documents",
   initialState,
   reducers: {
     loadDocuments(state, action) {
@@ -21,9 +21,9 @@ const documentsSlice = createSlice({
     createDocument(state) {
       const newDocument = {
         id: uuidv4(),
-        name: getUniqueName(state.documentsList, 'Document.md'),
-        content: '',
-        createdAt: new Date().toLocaleDateString('en-GB'),
+        name: getUniqueName(state.documentsList, "Document.md"),
+        content: "",
+        createdAt: new Date().toLocaleDateString("en-GB"),
       };
       state.documentsList.push(newDocument);
       state.currentDocument = newDocument;
@@ -45,7 +45,7 @@ const documentsSlice = createSlice({
         if (doc.id === id) {
           doc.name = name;
           doc.content = content;
-          doc.createdAt = new Date().toLocaleDateString('en-GB');
+          doc.createdAt = new Date().toLocaleDateString("en-GB");
         }
       });
     },
@@ -54,7 +54,7 @@ const documentsSlice = createSlice({
         state.documentsList = state.documentsList.filter(
           (doc) => doc.id !== state.currentDocument.id
         );
-        state.currentDocument = state.documentsList[0];
+        state.currentDocument = state.documentsList[0] || null;
       }
     },
   },

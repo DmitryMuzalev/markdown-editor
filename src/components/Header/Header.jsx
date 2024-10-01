@@ -36,37 +36,43 @@ function HeaderButtons() {
   const { currentDocument, documentsList } = useSelector(
     (state) => state.documents
   );
+
   const dispatch = useDispatch();
+
+  const handlerSaveDocument = () => {
+    const name = currentDocument?.name.trim();
+
+    if (name.length) {
+      const document = documentsList.find(
+        (doc) => doc.name === currentDocument?.name
+      );
+      if (document && document.id !== currentDocument?.id) {
+        toast.error(
+          `${name} already exists. \n Please change the document name.`
+        );
+      } else {
+        dispatch(saveDocument());
+        toast.success("Document saved");
+      }
+    } else {
+      toast.error(
+        "Document name cannot be an empty string. Document not saved."
+      );
+      document.getElementById("fileName").focus();
+    }
+  };
+
+  const handlerDeleteDocument = () => dispatch(toggleShowDeleteMenu());
 
   return (
     <div className={styles.headerButtons}>
-      <Button cb={() => dispatch(toggleShowDeleteMenu())}>
+      <Button cb={handlerDeleteDocument} disabled={!documentsList.length}>
         <img src={DeleteIcon} alt="delete file" />
       </Button>
       <Button
         type="primary"
-        cb={() => {
-          const name = currentDocument?.name.trim();
-
-          if (name.length) {
-            const document = documentsList.find(
-              (doc) => doc.name === currentDocument?.name
-            );
-            if (document && document.id !== currentDocument?.id) {
-              toast.error(
-                `${name} already exists. \n Please change the document name.`
-              );
-            } else {
-              dispatch(saveDocument());
-              toast.success("Document saved");
-            }
-          } else {
-            toast.error(
-              "Document name cannot be an empty string. Document not saved."
-            );
-            document.getElementById("fileName").focus();
-          }
-        }}
+        cb={handlerSaveDocument}
+        disabled={!documentsList.length}
       >
         <img src={SaveIcon} alt="save changes" />
         {!isTablet && <span>save changes</span>}

@@ -31,12 +31,17 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className={appStyles}>
-      <Sidebar />
-      <div className="content">
-        <Header />
-        {documentsList.length ? <Editor /> : <EmptyList />}
+    <>
+      <div className={appStyles} inert={showDeleteMenu ? "" : undefined}>
+        <Sidebar />
+        <div className="content">
+          <Header />
+          <main className="main">
+            {documentsList.length ? <Editor /> : <EmptyList />}
+          </main>
+        </div>
       </div>
+
       <Toaster
         toastOptions={{
           position: "top-center",
@@ -44,7 +49,7 @@ function App() {
         }}
       />
       {!!showDeleteMenu && <DeleteMenu />}
-    </div>
+    </>
   );
 }
 

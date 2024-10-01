@@ -96,6 +96,13 @@ ul {
   transform: translateX(15.625rem);
 }
 
+.main {
+  height: calc(100vh - 4.5rem);
+  @media (max-width: 768px) {
+    height: calc(100vh - 3.75rem);
+  }
+}
+
 .label-text {
   color: var(--natural-600);
   text-transform: capitalize;
@@ -147,7 +154,8 @@ ul {
   background: var(--window-editor-header-bg);
 }
 
-.editor-window-body {
+.editor-window-body,
+main {
   flex-grow: 1;
   background-color: var(--window-editor-body-bg);
   color: var(--window-editor-body-text-color);
