@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { v4 as uuidv4 } from "uuid";
 import { getUniqueName } from "../../helpers/getUniqueName";
+import { getItem, setItem } from "../../helpers/localStorage";
 
 const initialState = {
   documentsList: [],
@@ -15,7 +16,16 @@ const documentsSlice = createSlice({
     loadDocuments(state, action) {
       if (action.payload.length) {
         state.documentsList = action.payload;
-        state.currentDocument = action.payload[0];
+
+        const id = getItem("currentDocumentID");
+        if (id) {
+          state.currentDocument = state.documentsList.find(
+            (doc) => doc.id === id
+          );
+        } else {
+          state.currentDocument = action.payload[0];
+          setItem("currentDocumentID", action.payload[0].id);
+        }
       }
     },
     createDocument(state) {
@@ -27,11 +37,13 @@ const documentsSlice = createSlice({
       };
       state.documentsList.push(newDocument);
       state.currentDocument = newDocument;
+      setItem("currentDocumentID", newDocument.id);
     },
     selectDocument(state, action) {
       state.currentDocument = state.documentsList.find(
         (doc) => doc.id === action.payload
       );
+      setItem("currentDocumentID", action.payload);
     },
     renameDocument(state, action) {
       state.currentDocument.name = action.payload;
@@ -55,6 +67,7 @@ const documentsSlice = createSlice({
           (doc) => doc.id !== state.currentDocument.id
         );
         state.currentDocument = state.documentsList[0] || null;
+        setItem("currentDocumentID", state.currentDocument?.id || null);
       }
     },
   },

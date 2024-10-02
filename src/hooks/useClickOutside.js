@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const useClickOutside = (ref, isOpenModalWindow, cb) => {
+ const useClickOutside = (ref, isOpenModalWindow, cb) => {
   const handlerClick = (e) => {
     e.stopPropagation();
     if (ref.current && !ref.current.contains(e.target) && isOpenModalWindow) {
@@ -13,3 +13,6 @@ export const useClickOutside = (ref, isOpenModalWindow, cb) => {
     return () => document.removeEventListener("click", handlerClick);
   });
 };
+
+
+export { useClickOutside };

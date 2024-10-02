@@ -31,7 +31,7 @@ function Documents({ classes = [] }) {
               key={doc.id}
               name={doc.name}
               date={doc.createdAt}
-              isActive={doc.id === currentDocument.id}
+              isActive={doc.id === currentDocument?.id}
               cb={() => dispatch(selectDocument(doc.id))}
             />
           );

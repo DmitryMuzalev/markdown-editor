@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 
 //_Data:
-import documents from "./assets/data.json";
+import defaultDocuments from "./assets/data.json";
 
 //_Components:
 import { Editor } from "./components/Editor/Editor";
@@ -18,17 +18,30 @@ import { loadDocuments } from "./features/Documents/documents-slice";
 import { Toaster } from "react-hot-toast";
 import { DeleteMenu } from "./features/DeleteMenu/DeleteMenu";
 import { EmptyList } from "./components/EmptyList/EmptyList";
+import { getItem, setItem } from "./helpers/localStorage";
 
 function App() {
   const dispatch = useDispatch();
+
   const showSidebar = useSelector((state) => state.showSidebar);
   const showDeleteMenu = useSelector((state) => state.showDeleteMenu);
+
   const { documentsList } = useSelector((state) => state.documents);
+
   const appStyles = clsx("app", showSidebar && "open-sidebar");
 
   useEffect(() => {
-    dispatch(loadDocuments(documents));
+    const documents = getItem("documents");
+    if (documents) {
+      dispatch(loadDocuments(documents));
+    } else {
+      dispatch(loadDocuments(defaultDocuments));
+    }
   }, [dispatch]);
+
+  useEffect(() => {
+    setItem("documents", documentsList);
+  }, [documentsList]);
 
   return (
     <>
@@ -48,6 +61,7 @@ function App() {
           duration: 2000,
         }}
       />
+
       {!!showDeleteMenu && <DeleteMenu />}
     </>
   );

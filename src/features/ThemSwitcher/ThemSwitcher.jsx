@@ -1,29 +1,31 @@
 //_Utils:
-import clsx from 'clsx';
+import clsx from "clsx";
 
 //_Hooks:
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 //_Styles:
-import styles from './ThemSwitcher.module.scss';
+import styles from "./ThemSwitcher.module.scss";
 
 //_Actions:
-import { toggleTheme } from './theme-slice';
+import { toggleTheme } from "./theme-slice";
+import { setItem } from "../../helpers/localStorage";
 
 function ThemSwitcher() {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme);
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
+    document.body.setAttribute("data-theme", theme);
+    setItem("theme", theme);
   }, [theme]);
 
   const toggleSwitcher = () => dispatch(toggleTheme());
 
   const switcherStyles = clsx(
     styles.switcher,
-    theme === 'dark' && styles.switcherChecked
+    theme === "dark" && styles.switcherChecked
   );
 
   return (
@@ -31,7 +33,7 @@ function ThemSwitcher() {
       <i
         className="icon-light-mode"
         style={{
-          color: theme === 'dark' ? 'var(--natural-500)' : 'var(--white)',
+          color: theme === "dark" ? "var(--natural-500)" : "var(--white)",
         }}
       ></i>
       <button className={switcherStyles} onClick={toggleSwitcher}>
@@ -40,7 +42,7 @@ function ThemSwitcher() {
       <i
         className="icon-dark-mode"
         style={{
-          color: theme === 'dark' ? 'var(--white)' : 'var(--natural-500)',
+          color: theme === "dark" ? "var(--white)" : "var(--natural-500)",
         }}
       ></i>
     </div>
