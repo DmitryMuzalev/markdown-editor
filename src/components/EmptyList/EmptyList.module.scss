@@ -1,0 +1,22 @@
+.emptyList {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1rem;
+  padding: 0 1rem;
+
+  &Content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    max-width: 23rem;
+    font-size: 1.5rem;
+    font-family: var(--ff-rb-slab);
+    text-align: center;
+
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+    }
+  }
+}

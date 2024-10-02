@@ -20,6 +20,10 @@
       &:focus {
         border-bottom-color: var(--natural-800);
       }
+      &:disabled {
+        border-bottom-color: var(--natural-500);
+        cursor: not-allowed;
+      }
     }
   }
 

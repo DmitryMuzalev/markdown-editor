@@ -36,7 +36,10 @@
   --primary-200: #f39765;
 
   --white: #ffffff;
+  --white-transparent: #ffffff60;
+
   --black: #000000;
+  --black-transparent: #00000060;
 
   //_Fonts:
   --ff-rb: "Roboto", sans-serif;
@@ -69,14 +72,35 @@ body[data-theme="dark"] {
 button {
   cursor: pointer;
   color: inherit;
-  font-family: inherit;
-  font-size: inherit;
+  font-family: var(--ff-rb);
+  font-size: 1rem;
   border: none;
   background-color: transparent;
 }
 
 ul {
   list-style: none;
+}
+
+.app {
+  overflow: hidden;
+  background-color: var(--natural-200);
+}
+
+.content {
+  transform: translateX(0);
+  transition: transform var(--tr-time);
+}
+
+.app.open-sidebar .content {
+  transform: translateX(15.625rem);
+}
+
+.main {
+  height: calc(100vh - 4.5rem);
+  @media (max-width: 768px) {
+    height: calc(100vh - 3.75rem);
+  }
 }
 
 .label-text {
@@ -130,7 +154,8 @@ ul {
   background: var(--window-editor-header-bg);
 }
 
-.editor-window-body {
+.editor-window-body,
+main {
   flex-grow: 1;
   background-color: var(--window-editor-body-bg);
   color: var(--window-editor-body-text-color);

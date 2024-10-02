@@ -2,21 +2,26 @@
 import clsx from "clsx";
 
 //_Hooks:
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 //_Styles:
 import styles from "./ThemSwitcher.module.scss";
 
+//_Actions:
+import { toggleTheme } from "./theme-slice";
+import { setItem } from "../../helpers/localStorage";
+
 function ThemSwitcher() {
-  const [theme, setTheme] = useState("light");
+  const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme);
 
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
+    setItem("theme", theme);
   }, [theme]);
 
-  const toggleSwitcher = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+  const toggleSwitcher = () => dispatch(toggleTheme());
 
   const switcherStyles = clsx(
     styles.switcher,

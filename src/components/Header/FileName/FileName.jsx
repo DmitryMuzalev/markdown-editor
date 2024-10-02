@@ -9,11 +9,23 @@ import styles from "./FileName.module.scss";
 
 //_Images:
 import DocumentIcon from "../../../assets/icon-document.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { renameDocument } from "../../../features/Documents/documents-slice";
 
 function FileName({ classes = [] }) {
   const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
 
   const fileNameStyles = clsx(styles.fileName, ...classes);
+
+  const dispatch = useDispatch();
+  const { currentDocument, documentsList } = useSelector(
+    (state) => state.documents
+  );
+
+  const handlerInput = (e) => {
+    const inputValue = e.target.value;
+    dispatch(renameDocument(inputValue));
+  };
 
   return (
     <div className={fileNameStyles}>
@@ -26,7 +38,14 @@ function FileName({ classes = [] }) {
             document name
           </label>
         )}
-        <input type="text" id="fileName" value={"welcome.md"} />
+        <input
+          autoComplete="off"
+          type="text"
+          id="fileName"
+          value={currentDocument?.name || ""}
+          onChange={handlerInput}
+          disabled={!documentsList.length}
+        />
       </div>
     </div>
   );

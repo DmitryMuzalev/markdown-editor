@@ -2,39 +2,37 @@
 import clsx from "clsx";
 
 //_Hooks:
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 //_Styles:
 import styles from "./Documents.module.scss";
 
-//_Data:
-import documents from "./data-test.json";
-
 //_Components:
-import { Button } from "../../UI/Button/Button";
 import { DocumentItem } from "./DocumentItem/DocumentItem";
+
+//Actions:
+import { selectDocument } from "./documents-slice";
+import { CreateDocumentButton } from "../../components/CreateDocumentButton/CreateDocumentButton";
 
 function Documents({ classes = [] }) {
   const documentsStyles = clsx(styles.documents, ...classes);
-
-  const [currentDocumentID, setCurrentDocumentID] = useState("initDocsId1");
-
-  const handlerClickDocument = (id) => setCurrentDocumentID(id);
+  const { documentsList, currentDocument } = useSelector(
+    (state) => state.documents
+  );
+  const dispatch = useDispatch();
 
   return (
     <div className={documentsStyles}>
-      <Button type="primary">
-        <span>+ New Document</span>
-      </Button>
+      <CreateDocumentButton />
       <ul className={styles.documentsList + " " + "custom-scroll"}>
-        {documents.map((doc) => {
+        {documentsList.map((doc) => {
           return (
             <DocumentItem
               key={doc.id}
               name={doc.name}
               date={doc.createdAt}
-              isActive={doc.id === currentDocumentID}
-              cb={() => handlerClickDocument(doc.id)}
+              isActive={doc.id === currentDocument?.id}
+              cb={() => dispatch(selectDocument(doc.id))}
             />
           );
         })}
