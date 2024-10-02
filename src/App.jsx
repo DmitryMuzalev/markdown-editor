@@ -1,8 +1,10 @@
 //_Utils:
 import { clsx } from "clsx";
+import { Toaster } from "react-hot-toast";
 
 //_Hooks:
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 //_Data:
 import defaultDocuments from "./assets/data.json";
@@ -11,21 +13,20 @@ import defaultDocuments from "./assets/data.json";
 import { Editor } from "./components/Editor/Editor";
 import { Header } from "./components/Header/Header";
 import { Sidebar } from "./components/Sidebar/Sidebar";
-import { useEffect } from "react";
+import { DeleteMenu } from "./features/DeleteMenu/DeleteMenu";
+import { EmptyList } from "./components/EmptyList/EmptyList";
+
+//_Helpers:
+import { getItem, setItem } from "./helpers/localStorage";
 
 //_Actions:
 import { loadDocuments } from "./features/Documents/documents-slice";
-import { Toaster } from "react-hot-toast";
-import { DeleteMenu } from "./features/DeleteMenu/DeleteMenu";
-import { EmptyList } from "./components/EmptyList/EmptyList";
-import { getItem, setItem } from "./helpers/localStorage";
 
 function App() {
   const dispatch = useDispatch();
 
   const showSidebar = useSelector((state) => state.showSidebar);
   const showDeleteMenu = useSelector((state) => state.showDeleteMenu);
-
   const { documentsList } = useSelector((state) => state.documents);
 
   const appStyles = clsx("app", showSidebar && "open-sidebar");

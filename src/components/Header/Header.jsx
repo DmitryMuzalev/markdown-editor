@@ -1,4 +1,5 @@
 //_Hooks:
+import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
 //_Styles:
@@ -13,10 +14,11 @@ import { FileName } from "./FileName/FileName";
 import { Button } from "../UI/Button/Button";
 import { Logo } from "../Logo/Logo";
 import { SidebarSwitcher } from "../../features/SidebarSwitcher/SidebarSwitcher";
-import { useDispatch, useSelector } from "react-redux";
+
+//_Actions:
 import { saveDocument } from "../../features/Documents/documents-slice";
-import toast from "react-hot-toast";
 import { toggleShowDeleteMenu } from "../../features/DeleteMenu/delite-menu-slice";
+import { checkDocumentBeforeSave } from "../../helpers/checkDocumentBeforeSave";
 
 function Header() {
   const isSmallDesktop = useMediaQuery({ query: "(max-width: 992px)" });
@@ -40,24 +42,11 @@ function HeaderButtons() {
   const dispatch = useDispatch();
 
   const handlerSaveDocument = () => {
-    const name = currentDocument?.name.trim();
+    const isCheck = checkDocumentBeforeSave(currentDocument, documentsList);
 
-    if (name.length) {
-      const document = documentsList.find(
-        (doc) => doc.name === currentDocument?.name
-      );
-      if (document && document.id !== currentDocument?.id) {
-        toast.error(
-          `${name} already exists. \n Please change the document name.`
-        );
-      } else {
-        dispatch(saveDocument());
-        toast.success("Document saved");
-      }
+    if (isCheck) {
+      dispatch(saveDocument());
     } else {
-      toast.error(
-        "Document name cannot be an empty string. Document not saved."
-      );
       document.getElementById("fileName").focus();
     }
   };
