@@ -7,8 +7,8 @@ Frontend Mentor challenges help you improve your coding skills by building reali
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  <!--   - [Screenshot](#screenshot)
-  - [Links](#links) -->
+  - [Screenshot](#screenshot)
+  - [Links](#links)
 - [Built with](#built-with)
 - [Author](#author)
 
@@ -24,20 +24,21 @@ Users should be able to:
 - View a full-page preview of the formatted content
 - View the optimal layout for the app depending on their device's screen size
 - See hover states for all interactive elements on the page
-- If you're building a purely front-end project, use localStorage to save the current state in the browser that persists when the browser is refreshed
+- Save the current state in the browser that persists when the browser is refreshed
 
-<!-- ### Screenshot
+### Screenshot
 
 //![](./demo.gif)
 
 ### Links
 
-- Solution URL: [Code on GitHub](https://github.com/DmitryMuzalev/interactive-card-form)
-- Live Site URL: [Live on GitHub Pages](https://dmitrymuzalev.github.io/interactive-card-form/) -->
+- Solution URL: [Code on GitHub](https://github.com/DmitryMuzalev/markdown-editor)
+- Live Site URL: [Live on GitHub Pages](https://dmitrymuzalev.github.io/markdown-editor/)
 
 ## Built with
 
 - React 18
+- Redux Toolkit
 - Flexbox
 - SCSS
 
