@@ -1,22 +1,25 @@
 //_Utils:
 import clsx from 'clsx';
 
-//_Hooks:
-import { useMediaQuery } from 'react-responsive';
-
 //_Styles:
 import styles from './Markdown.module.scss';
 
+//_Hooks:
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
+
 //_Components:
 import { PreviewSwitcher } from '../../../features/PreviewSwitcher/PreviewSwitcher';
-import { useDispatch, useSelector } from 'react-redux';
+
+//_Actions:
 import { updateContentDocument } from '../../../features/Documents/documents-slice';
-import { useEffect } from 'react';
 
 function Markdown() {
   const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
 
   const markdownStyles = clsx(styles.markdown, 'editor-window');
+
   const markdownHeaderStyles = clsx(
     styles.markdownHeader,
     'editor-window-header'
@@ -28,7 +31,7 @@ function Markdown() {
   );
 
   const dispatch = useDispatch();
-  const { currentDocument } = useSelector((state) => state.documents);
+  const { content } = useSelector((state) => state.documents.currentDocument);
   const showSidebar = useSelector((state) => state.showSidebar);
 
   const handlerTextarea = (e) => {
@@ -50,7 +53,7 @@ function Markdown() {
       <textarea
         id="markdown"
         className={markdownBodyStyles}
-        value={currentDocument?.content}
+        value={content}
         onChange={handlerTextarea}
       />
     </div>

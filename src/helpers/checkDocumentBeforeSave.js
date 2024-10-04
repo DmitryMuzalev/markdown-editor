@@ -1,10 +1,10 @@
-import toast from "react-hot-toast";
+import toast from 'react-hot-toast';
 
 const checkDocumentBeforeSave = (document, documentsList) => {
   const { id, name } = document;
 
   if (!name.trim().length) {
-    toast.error("Document name cannot be an empty string. Document not saved.");
+    toast.error('Document name cannot be an empty string. Document not saved.');
     return false;
   }
 
@@ -12,9 +12,9 @@ const checkDocumentBeforeSave = (document, documentsList) => {
   if (copyDocument && copyDocument.id !== id) {
     toast.error(`${name} already exists. \n Please change the document name.`);
     return false;
-  } else {
-    toast.success("Document saved");
-    return true;
   }
+
+  toast.success('Document saved');
+  return true;
 };
 export { checkDocumentBeforeSave };

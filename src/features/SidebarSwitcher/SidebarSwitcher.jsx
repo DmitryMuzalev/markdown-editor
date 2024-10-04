@@ -1,11 +1,13 @@
 //_Utils:
 import clsx from 'clsx';
 
+//_Styles:
+import styles from './SidebarSwitcher.module.scss';
+
 //_Hooks:
 import { useDispatch, useSelector } from 'react-redux';
 
-//_Styles:
-import styles from './SidebarSwitcher.module.scss';
+//_Actions:
 import { toggleShowSidebar } from './sidebar-slice';
 
 function SidebarSwitcher() {
@@ -17,11 +19,10 @@ function SidebarSwitcher() {
     showSidebar && styles.sidebarSwitcherActive
   );
 
+  const handlerSidebarSwitcher = () => dispatch(toggleShowSidebar());
+
   return (
-    <button
-      className={menuButtonStyles}
-      onClick={() => dispatch(toggleShowSidebar())}
-    >
+    <button className={menuButtonStyles} onClick={handlerSidebarSwitcher}>
       <div>
         <span></span>
       </div>

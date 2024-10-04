@@ -4,7 +4,11 @@ import styles from './PreviewSwitcher.module.scss';
 //_Images:
 import HidePreviewIcon from '../../assets/icon-hide-preview.svg';
 import ShowPreviewIcon from '../../assets/icon-show-preview.svg';
+
+//_Hooks:
 import { useDispatch, useSelector } from 'react-redux';
+
+//_Actions:
 import { toggleShowPreview } from './preview-slice';
 
 function PreviewSwitcher() {

@@ -1,6 +1,11 @@
-import { useEffect, useRef } from "react";
-import styles from "./ModalWindow.module.scss";
-import { Button } from "../Button/Button";
+//_Styles:
+import styles from './ModalWindow.module.scss';
+
+//_Hooks:
+import { useEffect, useRef } from 'react';
+
+//_Components:
+import { Button } from '../Button/Button';
 
 function ModalWindow({ children, onClose, onConfirm }) {
   const refModalWindow = useRef();
@@ -14,17 +19,17 @@ function ModalWindow({ children, onClose, onConfirm }) {
     };
 
     const handleEscapePress = (event) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         onClose?.();
       }
     };
 
-    window.addEventListener("click", handleWrapperClick);
-    window.addEventListener("keydown", handleEscapePress);
+    window.addEventListener('click', handleWrapperClick);
+    window.addEventListener('keydown', handleEscapePress);
 
     return () => {
-      window.removeEventListener("click", handleWrapperClick);
-      window.removeEventListener("keydown", handleEscapePress);
+      window.removeEventListener('click', handleWrapperClick);
+      window.removeEventListener('keydown', handleEscapePress);
     };
   }, [onClose]);
 

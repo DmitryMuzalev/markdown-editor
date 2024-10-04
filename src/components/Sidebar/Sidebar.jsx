@@ -1,16 +1,16 @@
 //_Utils:
 import clsx from 'clsx';
 
-//_Hooks:
-import { useSelector } from 'react-redux';
-
 //_Styles:
 import styles from './Sidebar.module.scss';
 
+//_Hooks:
+import { useSelector } from 'react-redux';
+
 //_Components:
 import { Logo } from '../Logo/Logo';
-import { ThemSwitcher } from '../../features/ThemSwitcher/ThemSwitcher';
 import { Documents } from '../../features/Documents/Documents';
+import { ThemSwitcher } from '../../features/ThemSwitcher/ThemSwitcher';
 
 function Sidebar() {
   const showSidebar = useSelector((state) => state.showSidebar);

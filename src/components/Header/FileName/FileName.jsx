@@ -1,31 +1,25 @@
 //_Utils:
-import clsx from "clsx";
-
-//_Hooks:
-import { useMediaQuery } from "react-responsive";
+import clsx from 'clsx';
 
 //_Styles:
-import styles from "./FileName.module.scss";
+import styles from './FileName.module.scss';
 
 //_Images:
-import DocumentIcon from "../../../assets/icon-document.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { renameDocument } from "../../../features/Documents/documents-slice";
+import DocumentIcon from '../../../assets/icon-document.svg';
+
+//_Hooks:
+import { useDispatch, useSelector } from 'react-redux';
+
+//_Actions:
+import { renameDocument } from '../../../features/Documents/documents-slice';
 
 function FileName({ classes = [] }) {
-  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
-
   const fileNameStyles = clsx(styles.fileName, ...classes);
 
   const dispatch = useDispatch();
-  const { currentDocument, documentsList } = useSelector(
-    (state) => state.documents
-  );
+  const { currentDocument } = useSelector((state) => state.documents);
 
-  const handlerInput = (e) => {
-    const inputValue = e.target.value;
-    dispatch(renameDocument(inputValue));
-  };
+  const handlerInput = (e) => dispatch(renameDocument(e.target.value));
 
   return (
     <div className={fileNameStyles}>
@@ -33,18 +27,16 @@ function FileName({ classes = [] }) {
         <img src={DocumentIcon} alt="file" />
       </div>
       <div className={styles.fileNameField}>
-        {!isTablet && (
-          <label className="label-text" htmlFor="fileName">
-            document name
-          </label>
-        )}
+        <label className="label-text" htmlFor="fileName">
+          document name
+        </label>
         <input
-          autoComplete="off"
-          type="text"
           id="fileName"
-          value={currentDocument?.name || ""}
+          type="text"
+          autoComplete="off"
           onChange={handlerInput}
-          disabled={!documentsList.length}
+          value={currentDocument?.name || ''}
+          disabled={!currentDocument}
         />
       </div>
     </div>

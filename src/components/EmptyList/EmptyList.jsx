@@ -1,5 +1,8 @@
-import styles from "./EmptyList.module.scss";
-import { CreateDocumentButton } from "../CreateDocumentButton/CreateDocumentButton";
+//_Styles:
+import styles from './EmptyList.module.scss';
+
+//_Components:
+import { CreateDocumentButton } from '../CreateDocumentButton/CreateDocumentButton';
 
 function EmptyList() {
   return (

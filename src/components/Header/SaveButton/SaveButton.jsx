@@ -1,33 +1,40 @@
-import { useDispatch, useSelector } from "react-redux";
-import { checkDocumentBeforeSave } from "../../../helpers/checkDocumentBeforeSave";
-import { Button } from "../../UI/Button/Button";
-import { saveDocument } from "../../../features/Documents/documents-slice";
+//_Images:
+import SaveIcon from '../../../assets/icon-save.svg';
 
-import SaveIcon from "../../../assets/icon-save.svg";
-import { useMediaQuery } from "react-responsive";
+//_Hooks:
+import { useDispatch, useSelector } from 'react-redux';
+
+//_Helpers:
+import { checkDocumentBeforeSave } from '../../../helpers/checkDocumentBeforeSave';
+
+//_Actions:
+import { saveDocument } from '../../../features/Documents/documents-slice';
+
+//_Components:
+import { Button } from '../../UI/Button/Button';
 
 function SaveButton() {
   const dispatch = useDispatch();
   const { currentDocument, documentsList } = useSelector(
     (state) => state.documents
   );
-  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
 
   const handlerSaveDocument = () => {
     const isCheck = checkDocumentBeforeSave(currentDocument, documentsList);
     isCheck
       ? dispatch(saveDocument())
-      : document.getElementById("fileName").focus();
+      : document.getElementById('fileName').focus();
   };
 
   return (
     <Button
       type="primary"
       cb={handlerSaveDocument}
-      disabled={!documentsList.length}
+      disabled={!currentDocument}
+      classes={['save-button']}
     >
       <img src={SaveIcon} alt="save changes" />
-      {!isTablet && <span>save changes</span>}
+      <span>save changes</span>
     </Button>
   );
 }
